@@ -18,7 +18,7 @@ const corsOptions = {
 app.use(session({
     secret: 'secret',
     resave: false,
-    cookie: {maxAge: 60000},
+    cookie: {maxAge: 3.156e+10},
     saveUninitialized: false,
     store
     }));
@@ -32,11 +32,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
     if(req.user){
-        res.send(req.user);
+        res.json({user: req.user,session: req.sessionID});
     }else{
         res.send('Not logged in');
     }
-    // res.json({ message: 'Welcome to the TODO backend' }); 
+    //res.json({ message: 'Welcome to the TODO backend' }); 
 });
 
 app.use('/todo', todoRoute);
