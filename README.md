@@ -41,7 +41,7 @@ Start the server
 ## Flowchart
 ![flowchar](Flowchart.png)
 
-## Flowchart
+## ERD
 ![ERD](ERD.png)
 
 ## Authors
