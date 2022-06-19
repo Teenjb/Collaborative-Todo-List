@@ -2,7 +2,6 @@
 ![Logo](logo.png)
 
 
-# Collaborative-Todo-List
 
 TODO TOGETHER is an app that help people to remember what are they doing. This app has main feature to fill this todo together or collaborative
 
