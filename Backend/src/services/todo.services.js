@@ -1,3 +1,4 @@
+const { resolve } = require('path');
 const db = require('../configs/db.config');
 const helper = require('../utils/helper');
 
@@ -41,6 +42,7 @@ async function register (todo){
 
 async function grouplist (todo, user){
     const {name} = todo;
+    var id;
     let response = [];
     let promises = [];
     if(user){
@@ -50,14 +52,14 @@ async function grouplist (todo, user){
                 resolve(result.rows[0].grouplistid);
             });
         });
-        promise.then(function(value){
-            const query = `INSERT INTO grouplist_user (grouplistid, userid) VALUES (${value}, ${user.userid})`;
+        return promise.then(function(value){
+            const query = `INSERT INTO grouplist_user (grouplistid, userid) VALUES (${value}, ${user.userid})RETURNING grouplistid,userid`;
             promises.push(db.query(query).then(function(result){
-                response = result.rows;
+                console.log(result);
+                response.push(result.rows[0]);
                 }));
+        return Promise.all(promises).then(()=>{return {message: 'grouplist created', grouplistid: response[0].grouplistid, userid: response[0].userid}});
         });
-        const returns = Promise.all(promises).then(()=>{return {message: 'grouplist created'};});
-        return returns;
     }else{
         return {
             message: 'Not loged in'
@@ -109,15 +111,16 @@ async function join_grouplist(todo, user){
 
 async function create_list(todo){
     const {grouplistid,title,due,ischecked} = todo;
-    const query = `INSERT INTO list (grouplistid, title, due, ischecked) VALUES (${grouplistid}, '${title}', '${due}', ${ischecked})`;
+    const query = `INSERT INTO list (grouplistid, title, due, ischecked) VALUES (${grouplistid}, '${title}', '${due}', ${ischecked}) RETURNING listid`;
     const result = await db.query(query);
     if(result.rowCount > 0){
         return {
-            message: `list ${title} created`
+            message: `list ${title} created`,
+            listid: result.rows[0].listid
         }
     }else{
         return {
-            message: `cant create list ${title}`
+            message: `cant create list`
         }
     }
 }
@@ -190,6 +193,43 @@ async function delete_grouplist(todo, user){
     }
 }
 
+async function update_check(todo){
+    const {listid,ischecked} = todo;
+    const query = `UPDATE list SET ischecked = ${ischecked} WHERE listid = ${listid}`;
+    const result = await db.query(query);
+    if(result.rowCount > 0){
+        return {
+            message: `list ${listid} updated`
+        }
+    }else{
+        return {
+            message: `cant update list ${listid}`
+        }
+    }
+}
+
+async function update_password(todo, user){
+    const {password} = todo;
+    if(user){
+        const hashedPassword = await helper.hashPassword(password);
+        const query = `UPDATE users SET password = '${hashedPassword}' WHERE userid = ${user.userid}`;
+        const result = await db.query(query);
+        if(result.rowCount > 0){
+            return {
+                message: `password updated`
+            }
+        }else{
+            return {
+                message: `cant update password`
+            }
+        }
+    }else{
+        return {
+            message: 'Not loged in'
+        }
+    }
+}
+
 module.exports = {
     login,
     register,
@@ -200,5 +240,7 @@ module.exports = {
     get_list,
     update_list,
     delete_list,
-    delete_grouplist
+    delete_grouplist,
+    update_check,
+    update_password
 }

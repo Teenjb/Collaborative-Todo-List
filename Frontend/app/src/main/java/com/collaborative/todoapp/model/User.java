@@ -1,8 +1,18 @@
 package com.collaborative.todoapp.model;
 
+/**
+ * This model is used to represent a user record from backend
+ */
 public class User {
-    private int id;
+    private int userid;
     private String username;
     private String password;
-    private String SessionId;
+
+    /**
+     * this method is used to return username
+     * @return username
+     */
+    public String getUsername() {
+        return username;
+    }
 }

@@ -24,6 +24,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * This class is extending AppCompatActivity to create a custom activity for login
+ */
 public class MainActivity extends AppCompatActivity {
     Button loginButton;
     EditText username,password;
@@ -55,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method is used to request login
+     */
     void requestLogin(){
         mApiService.loginRequest(username.getText().toString(), password.getText().toString())
                 .enqueue(new Callback<ResponseBody>() {

@@ -30,7 +30,7 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get('/', (req, res) => {
+app.get('/todo/default', (req, res) => {
     if(req.user){
         res.json({user: req.user,session: req.sessionID});
     }else{

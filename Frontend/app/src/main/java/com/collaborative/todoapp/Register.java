@@ -24,6 +24,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * This class is extending AppCompatActivity to create a custom activity for Register
+ */
 public class Register extends AppCompatActivity {
     Button registerButton;
     EditText username,password;
@@ -47,6 +50,9 @@ public class Register extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method is used to request register
+     */
     void requestRegister(){
         // mengirimkan request ke server
         mApiService.registerRequest(username.getText().toString(), password.getText().toString())
@@ -74,7 +80,6 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         Log.e("debug", "onFailure: ERROR > " + t.toString());
-                        //loading.dismiss();
                     }
                 });
 

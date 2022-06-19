@@ -13,7 +13,7 @@
         android:layout_margin="20sp"
         android:background="#FFFFFF"
         android:gravity="center_vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/tableRow"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,14 +22,15 @@
 
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/todoName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10sp"
             android:layout_marginRight="150sp"
             android:text="TO DO?"
             android:textColor="#000000"
-            android:textSize="34sp" />
+            android:textSize="34sp"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/profile"
@@ -43,17 +44,19 @@
     <ListView
         android:id="@+id/lvItems"
         android:layout_width="match_parent"
-        android:layout_height="556dp"
-        android:layout_marginTop="108dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="112dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.033">
 
     </ListView>
 
     <TableRow
-        android:id="@+id/tableRow"
+        android:id="@+id/join"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -62,17 +65,43 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
+            android:id="@+id/joinGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:text="Join Group" />
+
+        <EditText
+            android:id="@+id/joinGroupId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Group ID" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.915">
+
+        <Button
             android:id="@+id/addGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
-            android:text="Add Item" />
+            android:text="Add Group" />
 
         <EditText
             android:id="@+id/groupName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter a new item" />
+            android:hint="Enter Group Name" />
     </TableRow>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

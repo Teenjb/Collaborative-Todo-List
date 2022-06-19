@@ -58,7 +58,7 @@ async function create_list(req,res){
 
 async function get_list(req,res){
     try{
-        const result = await todoService.get_list(req.body);
+        const result = await todoService.get_list(req.query);
         res.json(result);
     }catch(err){
         res.json(err);
@@ -85,7 +85,7 @@ async function delete_list(req,res){
 
 async function delete_grouplist(req,res){
     try{
-        const result = await todoService.delete_grouplist(req.body, req.user);
+        const result = await todoService.delete_grouplist(req.query, req.user);
         res.json(result);
     }catch(err){
         res.json(err);
@@ -107,6 +107,24 @@ async function logout(req,res){
     }
 }
 
+async function update_check(req,res){
+    try{
+        const result = await todoService.update_check(req.query);
+        res.json(result);
+    }catch(err){
+        res.json(err);
+    }
+}
+
+async function update_password(req,res){
+    try{
+        const result = await todoService.update_password(req.query, req.user);
+        res.json(result);
+    }catch(err){
+        res.json(err);
+    }
+}
+
 module.exports = {
     login,
     register,
@@ -118,5 +136,7 @@ module.exports = {
     update_list,
     delete_list,
     delete_grouplist,
-    logout
+    logout,
+    update_check,
+    update_password
 }

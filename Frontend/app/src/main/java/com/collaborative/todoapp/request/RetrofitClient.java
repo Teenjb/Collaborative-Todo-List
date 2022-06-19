@@ -12,6 +12,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * this class is used to save cookies from backend
+ */
 class SessionCookieJar implements CookieJar {
 
     private List<Cookie> cookies;
@@ -31,6 +34,9 @@ class SessionCookieJar implements CookieJar {
     }
 }
 
+/**
+ * this class is used to create a retrofit client
+ */
 public class RetrofitClient {
     private static Retrofit retrofit = null;
 

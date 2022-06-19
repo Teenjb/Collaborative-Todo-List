@@ -27,4 +27,8 @@ router.delete('/delete-grouplist', todoController.delete_grouplist);
 
 router.post('/logout', todoController.logout);
 
+router.put('/update-check', todoController.update_check);
+
+router.put('/update-password', todoController.update_password);
+
 module.exports = router;

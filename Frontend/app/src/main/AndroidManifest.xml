@@ -13,6 +13,12 @@
         android:theme="@style/Theme.TodoApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".CreateList"
+            android:exported="false" />
+        <activity
+            android:name=".ListPage"
+            android:exported="false" />
+        <activity
             android:name=".Profile"
             android:exported="false" />
         <activity
